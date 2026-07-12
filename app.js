@@ -25,7 +25,7 @@ function keyButton(data) {
   button.type = 'button'; button.className = `key ${data.className || ''}`; button.dataset.code = data.code; button.dataset.label = data.label;
   button.innerHTML = data.hint ? `<small>${data.hint}</small>${data.label}` : data.label;
   button.setAttribute('aria-label', `${data.label}, ${seen.has(data.code) ? 'проверена' : 'не проверена'}`);
-  button.addEventListener('click', () => registerPress(data.code, data.label, button));
+  button.addEventListener('click', event => { event.preventDefault(); registerPress(data.code, data.label, button); });
   return button;
 }
 function renderRow(items, parent = keyboard) { const row = document.createElement('div'); row.className = 'key-row'; items.forEach(item => row.appendChild(keyButton(item))); parent.appendChild(row); }
