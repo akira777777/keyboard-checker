@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Интерактивный тестер клавиатуры" />
+    <title>KeyCheck — тестер клавиатуры</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="KeyCheck, на главную">
+          <span class="brand-mark" aria-hidden="true">⌨</span>
+          <span>KEY<span class="brand-accent">CHECK</span></span>
+        </a>
+        <div class="topbar-actions">
+          <span class="connection"><span class="status-dot"></span> Система готова</span>
+          <button class="fullscreen-button" id="fullscreenToggle" type="button" aria-label="Включить полноэкранный режим" aria-pressed="false" title="Включить полноэкранный режим"><span aria-hidden="true">⛶</span><span class="fullscreen-label">На весь экран</span></button>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Переключить тему" aria-pressed="false" title="Переключить тему">◐</button>
+        </div>
+      </header>
+
+      <section class="hero" id="top">
+        <div>
+          <p class="eyebrow">HARDWARE DIAGNOSTICS <span>•</span> LIVE</p>
+          <h1>Проверь каждую<br /><em>клавишу.</em></h1>
+          <p class="hero-copy">Нажимай клавиши на физической или экранной клавиатуре. Мы зафиксируем каждое нажатие, чтобы ты сразу увидел, всё ли работает.</p>
+        </div>
+        <div class="hero-badge" aria-label="Клавиатура подключена">
+          <span class="badge-icon">✓</span>
+          <span><strong>Готов к тесту</strong><small>Нажми любую клавишу</small></span>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Статистика теста">
+        <article class="stat-card"><span class="stat-label">Нажато клавиш</span><strong id="pressedCount">0</strong><span class="stat-note">за текущую сессию</span></article>
+        <article class="stat-card"><span class="stat-label">Уникальных</span><strong id="uniqueCount">0<span class="stat-unit"> / 75</span></strong><span class="stat-note">клавиш обнаружено</span></article>
+        <article class="stat-card progress-card"><div class="stat-heading"><span class="stat-label">Прогресс проверки</span><span id="progressPercent">0%</span></div><div class="progress-track" role="progressbar" aria-label="Прогресс проверки клавиатуры" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div><span class="stat-note" id="progressNote">Начни нажимать клавиши</span></article>
+      </section>
+
+      <section class="tester-panel" aria-labelledby="tester-title">
+        <div class="panel-heading">
+          <div><p class="eyebrow">KEYBOARD MAP</p><h2 id="tester-title">Интерактивная клавиатура</h2></div>
+          <button class="reset-button" id="resetButton" type="button"><span>↻</span> Сбросить тест</button>
+        </div>
+        <div class="keyboard-wrap">
+          <div class="keyboard" id="keyboard" role="group" aria-label="Виртуальная клавиатура"></div>
+        </div>
+        <div class="legend" aria-label="Обозначения"><span><i class="legend-key"></i> Не проверено</span><span><i class="legend-key legend-key-active"></i> Нажато</span><span><i class="legend-key legend-key-last"></i> Последнее нажатие</span><span class="last-pressed">Последняя: <strong id="lastKey">—</strong></span></div>
+      </section>
+
+      <section class="activity-panel" aria-labelledby="activity-title">
+        <div class="activity-title"><span class="activity-icon">⌁</span><div><h2 id="activity-title">Журнал активности</h2><p>Последние нажатия в реальном времени</p></div></div>
+        <ol class="activity-list" id="activityList" aria-live="polite"><li class="empty-activity">Здесь появятся твои нажатия</li></ol>
+      </section>
+      <footer><span>KEYCHECK v1.0</span><span>Камера не используется · Новые окна не открываются · Данные никуда не отправляются</span></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
